@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo:6.0
+    restart: unless-stopped
+    volumes:
+      - ./data/mongo-db:/data/db
+  mongo-express:
+    image: mongo-express:1.0.0-alpha.4
+    restart: unless-stopped
+    ports:
+      - 8081:8081
+    env_file:
+      - ./.secret/mongo-express.env
